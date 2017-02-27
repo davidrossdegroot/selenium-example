@@ -179,3 +179,6 @@ cache.*
 # Don't add logback log4j files to source
 *.log
 
+
+# Don't add payment deets files
+*deets.txt

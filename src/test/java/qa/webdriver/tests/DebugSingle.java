@@ -1,7 +1,13 @@
 package qa.webdriver.tests;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -35,12 +41,24 @@ public class DebugSingle {
 
 	@Test
 	public void testWithPageObject() {
-		driver.get("http://www.google.com");
 		driver.get("http://www.nytimes.com");
 		String text = driver.findElement(By.xpath("//article[@class='story theme-summary lede']")).getText();
 		System.out.println(text);
+		System.out.println(StringUtils.substringBetween(text, "KATE", "HABERMAN"));
 //		driver.findElement(By.id("log")).sendKeys("testuser_3");
-		EtsySearchPage gs = new EtsySearchPage();
+		
+		DateTime today = new DateTime();
+		DateTimeFormatter fmt = DateTimeFormat.forPattern("dd-MMMM-yyyy");
+		String todayStr = fmt.print(today);
+		
+		try{
+		    PrintWriter writer = new PrintWriter(todayStr + "-" + "payment-deets.txt", "UTF-8");
+		    writer.println("The first line");
+		    writer.println("The second line");
+		    writer.close();
+		} catch (IOException e) {
+		   // do something
+		}
 	}
 
 	@Test

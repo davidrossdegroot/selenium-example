@@ -17,6 +17,7 @@ dependencies {
     compile group: 'junit', name: 'junit', version: '4.+'
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.+'
     compile group: 'net.sf.opencsv', name: 'opencsv', version: '2.+'
+	compile group: 'joda-time', name: 'joda-time', version: '2.3'
 }	
 
 tasks.withType(Test) {
