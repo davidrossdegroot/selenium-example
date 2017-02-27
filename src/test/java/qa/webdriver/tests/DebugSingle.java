@@ -44,27 +44,27 @@ public class DebugSingle {
 		driver.get("http://www.nytimes.com");
 		String text = driver.findElement(By.xpath("//article[@class='story theme-summary lede']")).getText();
 		System.out.println(text);
-		System.out.println(StringUtils.substringBetween(text, "KATE", "HABERMAN"));
+		String substringText = StringUtils.substringBetween(text, "KATE", "HABERMAN");
+		
+		// Example where form data is submitted
 //		driver.findElement(By.id("log")).sendKeys("testuser_3");
 		
+		
+		// Can also create "pages" for doing certain page related functionality.
+//		EtsySearchPage esp = new EtsySearchPage();
+		
 		DateTime today = new DateTime();
-		DateTimeFormatter fmt = DateTimeFormat.forPattern("dd-MMMM-yyyy");
+		DateTimeFormatter fmt = DateTimeFormat.forPattern("dd-MM-yyyy-HHmm-");
 		String todayStr = fmt.print(today);
 		
 		try{
 		    PrintWriter writer = new PrintWriter(todayStr + "-" + "payment-deets.txt", "UTF-8");
-		    writer.println("The first line");
-		    writer.println("The second line");
+		    writer.println(text);
+		    writer.println(substringText);
 		    writer.close();
 		} catch (IOException e) {
 		   // do something
 		}
-	}
-
-	@Test
-	public void testFluentPageObject() {
-		driver.get(System.getProperty("testURL") + "webhp?hl=en&tab=ww");
-		EtsySearchPage esp = new EtsySearchPage();
 	}
 
 	@After
